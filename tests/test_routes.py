@@ -132,7 +132,7 @@ class TestAccountService(TestCase):
         """ It should Read a single Account """
         account = self._create_accounts(1)[0]
         resp = self.client.get(
-            f"{BASE_URL}/{account.id}", content_type ="application/json"
+            f"{BASE_URL}/{account.id}", content_type="application/json"
         )
         self.assertEqual(resp.status_code, status.HTTP_200_OK)
         data = resp.get_json()
@@ -158,7 +158,7 @@ class TestAccountService(TestCase):
         resp = self.client.post(BASE_URL, json=test_account.serialize())
         self.assertEqual(resp.status_code, status.HTTP_201_CREATED)
 
-        #update the account
+        # update the account
         new_account = resp.get_json()
         new_account["name"] = "Jack"
         resp = self.client.put(f"{BASE_URL}/{new_account['id']}", json=new_account)
